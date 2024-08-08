@@ -5,20 +5,20 @@ def pascal_triangle(n):
                     if n <= 0:
                                 return []
 
-                                triangle = [[1]]  # Start with the first row
+                                triangle = []  # Initialize an empty list to hold all rows of the triangle
 
-                                    for i in range(1, n):
-                                                # Each row is based on the previous row
-                                                        prev_row = triangle[-1]
-                                                                # Start the row with 1
-                                                                        row = [1]
-                                                                                # Calculate the middle values of the row
-                                                                                        for j in range(1, i):
-                                                                                                        row.append(prev_row[j-1] + prev_row[j])
-                                                                                                                # End the row with 1
-                                                                                                                        row.append(1)
-                                                                                                                                # Append the row to the triangle
-                                                                                                                                        triangle.append(row)
+                                    for i in range(n):
+                                                # Start each row with 1
+                                                        row = [1] * (i + 1)
+                                                                
+                                                                        # Fill in the interior values of the row (if i > 1)
+                                                                                if i > 1:
+                                                                                                for j in range(1, i):
+                                                                                                                    # Each element is the sum of the two elements directly above it
+                                                                                                                                    row[j] = triangle[i-1][j-1] + triangle[i-1][j]
 
-                                                                                                                                            return triangle
+                                                                                                                                            # Append the completed row to the triangle
+                                                                                                                                                    triangle.append(row)
+
+                                                                                                                                                        return triangle
 
