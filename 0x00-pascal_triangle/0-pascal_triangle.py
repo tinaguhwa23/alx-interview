@@ -1,22 +1,24 @@
-#!/usr/bin/python3
-"""
-0-pascal_triangle
-"""
-
-
 def pascal_triangle(n):
         """
-                Create rows for pascal triangle
-                    """
-                        triangle = []
+            Returns a list of lists representing Pascal's Triangle up to the nth row.
+                """
+                    if n <= 0:
+                                return []
 
-                            if n <= 0:
-                                        return triangle
+                                triangle = [[1]]  # Start with the first row
 
-                                        for i in range(n):
-                                                    row = [1] * (i + 1)
-                                                            for j in range(1, i):
-                                                                            row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j]
-                                                                                    triangle.append(row)
+                                    for i in range(1, n):
+                                                # Each row is based on the previous row
+                                                        prev_row = triangle[-1]
+                                                                # Start the row with 1
+                                                                        row = [1]
+                                                                                # Calculate the middle values of the row
+                                                                                        for j in range(1, i):
+                                                                                                        row.append(prev_row[j-1] + prev_row[j])
+                                                                                                                # End the row with 1
+                                                                                                                        row.append(1)
+                                                                                                                                # Append the row to the triangle
+                                                                                                                                        triangle.append(row)
 
-                                                                                        return triangle
+                                                                                                                                            return triangle
+
